@@ -1,0 +1,9 @@
+/log2pm/Debug
+/log2pm/Release
+/log2pm/log2pm/Debug
+/log2pm/log2pm/Release
+/log2pm/log2pm/x64/Release
+/log2pm/.vs
+/log2pm/log2pm/*.user
+/log2pm/log2pm/logs
+/log2pm/packages

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\VisualCppTools.14.0.25027-Pre\build\native\VisualCppTools.props" Condition="Exists('..\packages\VisualCppTools.14.0.25027-Pre\build\native\VisualCppTools.props')" />
+  <Import Project="..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.props" Condition="Exists('..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -150,7 +152,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.targets" Condition="Exists('..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.props'))" />
+    <Error Condition="!Exists('..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.work.vcpkg.1.0.0\build\native\vcpkg.D.work.vcpkg.targets'))" />
+    <Error Condition="!Exists('..\packages\VisualCppTools.14.0.25027-Pre\build\native\VisualCppTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VisualCppTools.14.0.25027-Pre\build\native\VisualCppTools.props'))" />
+  </Target>
 </Project>
